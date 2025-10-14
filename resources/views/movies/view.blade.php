@@ -4,20 +4,29 @@
 
 @section('content')
     <div class="row">
-        
+
         <div class="col-md-4">
-            <img src="{{ $movie->poster_url ?: 'https://via.placeholder.com/400x600.png?text=No+Poster' }}" class="img-fluid rounded" alt="{{ $movie->title }}">
+            <img src="{{ $movie->poster_url ?: 'https://via.placeholder.com/400x600.png?text=No+Poster' }}"
+                class="img-fluid rounded" alt="{{ $movie->title }}">
         </div>
 
-       
+
         <div class="col-md-8">
             <h1 class="text-warning">{{ $movie->title }}</h1>
+
+            <div class="d-flex align-items-center mb-2">
+                <h3 class="text-warning mb-0 me-2">
+                    <i class="fas fa-star"></i> {{ number_format($movie->average_rating, 1) }}
+                </h3>
+                <span class="text-muted">/ 5.0 (from {{ $movie->reviews_count }} reviews)</span>
+            </div>
+
             <p class="text-muted">{{ $movie->release_year }} • {{ $movie->genre->name }}</p>
-            
+
             <h4 class="mt-4">Synopsis</h4>
             <p>{{ $movie->synopsis ?: 'No synopsis available.' }}</p>
 
-            
+
             <h4 class="mt-4">Available On</h4>
             <div>
                 @forelse ($movie->providers as $provider)
@@ -27,14 +36,17 @@
                 @endforelse
             </div>
 
-           
+
             <div class="mt-5">
-                <a href="{{ route('movies.list') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Back to List</a>
+                <a href="{{ route('movies.list') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i>
+                    Back to List</a>
                 @can('update', $movie)
-                    <a href="{{ route('movies.update-form', ['movie' => $movie->id]) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
+                    <a href="{{ route('movies.update-form', ['movie' => $movie->id]) }}" class="btn btn-info"><i
+                            class="fas fa-edit"></i> Edit</a>
                 @endcan
                 @can('delete', $movie)
-                    <form action="{{ route('movies.delete', ['movie' => $movie->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDeleteMovie(event)">
+                    <form action="{{ route('movies.delete', ['movie' => $movie->id]) }}" method="POST" class="d-inline"
+                        onsubmit="return confirmDeleteMovie(event)">
                         @csrf
                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
                     </form>
@@ -45,9 +57,9 @@
 
     <hr class="my-5 border-secondary">
 
-  
+
     <div class="row">
-      
+
         <div class="col-md-6">
             <h2><i class="fas fa-comments"></i> Reviews</h2>
             @forelse ($movie->reviews->sortByDesc('created_at') as $review)
@@ -62,10 +74,16 @@
                                     @endfor
                                 </span>
                             </div>
+                            @can('update', $review)
+                                    <a href="{{ route('reviews.edit-form', ['review' => $review->id]) }}" class="btn btn-sm btn-outline-info me-2"><i class="fas fa-edit"></i></a>
+                                @endcan
+                                
                             @can('delete', $review)
-                                <form action="{{ route('reviews.delete', ['review' => $review->id]) }}" method="POST" onsubmit="return confirmDeleteReview(event)">
+                                <form action="{{ route('reviews.delete', ['review' => $review->id]) }}" method="POST"
+                                    onsubmit="return confirmDeleteReview(event)">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i
+                                            class="fas fa-trash"></i></button>
                                 </form>
                             @endcan
                         </div>
@@ -78,9 +96,9 @@
             @endforelse
         </div>
 
-        
+
         <div class="col-md-6">
-            
+
             @auth
                 @can('create', App\Models\Review::class)
                     <h3><i class="fas fa-pen-fancy"></i> Write a Review</h3>
@@ -116,14 +134,13 @@
                     <a href="{{ route('logins.form') }}" class="btn btn-warning mt-2">Login Now</a>
                 </div>
             @endguest
-           
+
         </div>
     </div>
 @endsection
 
 @section('script')
     <script>
-        
         function confirmDeleteMovie(event) {
             event.preventDefault();
             const form = event.target;
@@ -145,7 +162,7 @@
             return false;
         }
 
-        
+
         function confirmDeleteReview(event) {
             event.preventDefault();
             const form = event.target;

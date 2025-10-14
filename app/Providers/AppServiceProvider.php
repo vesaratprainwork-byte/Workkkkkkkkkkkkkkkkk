@@ -2,31 +2,27 @@
 
 namespace App\Providers;
 
+use App\Models\Review;
+use App\Observers\ReviewObserver;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-
-
-
-
-use App\Models\User;
-use App\Policies\UserPolicy;
-
-
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void {}
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
-        \Illuminate\Pagination\Paginator
-            ::defaultView('vendor.pagination.default');
-        \Illuminate\Pagination\Paginator
-            ::defaultSimpleView('vendor.pagination.simple-default');
-
-        \Illuminate\Pagination\Paginator::defaultView('vendor.pagination.default');
-        \Illuminate\Pagination\Paginator::defaultSimpleView('vendor.pagination.simple-default');
-
-        Gate::policy(User::class, UserPolicy::class);
+        Paginator::useBootstrapFive();
+        Review::observe(ReviewObserver::class);
     }
 }

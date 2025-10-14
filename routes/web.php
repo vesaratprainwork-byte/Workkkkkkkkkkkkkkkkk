@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('reviews')->name('reviews.')->group(function () {
         Route::post('/movies/{movie}', [ReviewController::class, 'create'])->name('create');
         Route::post('/{review}/delete', [ReviewController::class, 'delete'])->name('delete');
+        Route::get('/{review}/edit', [ReviewController::class, 'showEditForm'])->name('edit-form');
+        Route::post('/{review}/edit', [ReviewController::class, 'update'])->name('update');
     });
 
 
