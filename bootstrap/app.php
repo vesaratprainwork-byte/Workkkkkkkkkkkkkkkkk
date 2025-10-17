@@ -11,10 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // --- START: เพิ่มโค้ด 1 บรรทัดนี้เข้าไป ---
+       
         $middleware->redirectGuestsTo(fn () => route('logins.form'));
-        // --- END: เพิ่มโค้ด 1 บรรทัดนี้เข้าไป ---
+       
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        
     })->create();

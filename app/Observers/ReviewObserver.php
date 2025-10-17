@@ -7,25 +7,25 @@ use App\Models\Review;
 
 class ReviewObserver
 {
-    
+
     public function created(Review $review): void
     {
         $this->updateMovieRating($review->movie);
     }
 
-    
+
     public function updated(Review $review): void
     {
         $this->updateMovieRating($review->movie);
     }
 
-    
+
     public function deleted(Review $review): void
     {
         $this->updateMovieRating($review->movie);
     }
 
-    
+
     protected function updateMovieRating(Movie $movie)
     {
         $movie->average_rating = $movie->reviews()->avg('rating') ?? 0;

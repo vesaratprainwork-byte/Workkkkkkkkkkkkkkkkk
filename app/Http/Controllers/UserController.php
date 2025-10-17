@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,13 +10,13 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    
+
     public function showRegistrationForm()
     {
         return view('users.register-form');
     }
 
-    
+
     public function register(Request $request)
     {
         $request->validate([
@@ -37,18 +37,18 @@ class UserController extends Controller
         return redirect()->route('home')->with('status', 'Registration successful! Welcome to MovieHub.');
     }
 
-    
+
     public function showSelfEditForm()
     {
         $user = Auth::user();
-        $user->load('reviews.movie'); 
+        $user->load('reviews.movie');
 
         return view('users.self.edit-form', [
             'user' => $user,
         ]);
     }
 
-    
+
     public function updateSelf(Request $request)
     {
         $user = Auth::user();

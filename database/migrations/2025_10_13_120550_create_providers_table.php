@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('logo_url')->nullable(); 
+            $table->string('logo_url')->nullable();
             $table->timestamps();
         });
     }

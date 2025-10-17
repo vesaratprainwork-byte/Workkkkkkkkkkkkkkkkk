@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class GenreSeeder extends Seeder
 {
-    
+
     public function run(): void
     {
-        
+
         DB::table('genres')->insert([
             ['code' => 'ACT', 'name' => 'Action'],
             ['code' => 'CMD', 'name' => 'Comedy'],

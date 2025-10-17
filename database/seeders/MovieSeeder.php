@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class MovieSeeder extends Seeder
 {
-    
+
     public function run(): void
     {
-        
+
         DB::table('movies')->insert([
             [
-                'id' => 1, 
+                'id' => 1,
                 'title' => 'Inception',
                 'synopsis' => 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
                 'release_year' => 2010,
@@ -54,21 +54,20 @@ class MovieSeeder extends Seeder
             ],
         ]);
 
-        
+
         DB::table('movie_provider')->insert([
-            
+
             ['movie_id' => 1, 'provider_id' => 1],
             ['movie_id' => 1, 'provider_id' => 3],
 
-            
+
             ['movie_id' => 2, 'provider_id' => 3],
 
-            
+
             ['movie_id' => 3, 'provider_id' => 1],
 
-            
+
             ['movie_id' => 4, 'provider_id' => 4],
         ]);
-        
     }
 }

@@ -17,13 +17,13 @@ class Review extends Model
         'movie_id',
     ];
 
-    
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    
+
     public function movie(): BelongsTo
     {
         return $this->belongsTo(Movie::class);

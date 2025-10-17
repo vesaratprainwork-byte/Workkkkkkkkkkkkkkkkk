@@ -28,7 +28,7 @@ class ProviderController extends Controller
         $this->authorize('create', Provider::class);
         $request->validate([
             'name' => 'required|string|unique:providers,name',
-            'url' => 'nullable|url', 
+            'url' => 'nullable|url',
         ]);
         Provider::create($request->all());
         return redirect()->route('providers.list')->with('status', 'Provider created successfully.');
@@ -45,7 +45,7 @@ class ProviderController extends Controller
         $this->authorize('update', $provider);
         $request->validate([
             'name' => 'required|string|unique:providers,name,' . $provider->id,
-            'url' => 'nullable|url', 
+            'url' => 'nullable|url',
         ]);
         $provider->update($request->all());
         return redirect()->route('providers.list')->with('status', 'Provider updated successfully.');

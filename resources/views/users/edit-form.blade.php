@@ -3,62 +3,62 @@
 @section('title', 'Edit My Profile')
 
 @section('content')
-    <h1><i class="fas fa-user-edit"></i> Edit My Profile</h1>
+<h1><i class="fas fa-user-edit"></i> Edit My Profile</h1>
 
-    <div class="card bg-dark border-secondary">
-        <div class="card-body">
-            <form action="{{ route('profile.update') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input type="text"
-                        class="form-control bg-secondary text-white border-dark @error('name') is-invalid @enderror"
-                        id="name" name="name" value="{{ old('name', $user->name) }}" required>
-                    @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email"
-                        class="form-control bg-secondary text-white border-dark @error('email') is-invalid @enderror"
-                        id="email" name="email" value="{{ old('email', $user->email) }}" required>
-                    @error('email')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+<div class="card bg-dark border-secondary">
+    <div class="card-body">
+        <form action="{{ route('profile.update') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text"
+                    class="form-control bg-secondary text-white border-dark @error('name') is-invalid @enderror"
+                    id="name" name="name" value="{{ old('name', $user->name) }}" required>
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email"
+                    class="form-control bg-secondary text-white border-dark @error('email') is-invalid @enderror"
+                    id="email" name="email" value="{{ old('email', $user->email) }}" required>
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
-                <hr class="border-secondary my-4">
+            <hr class="border-secondary my-4">
 
-                <h5 class="text-warning">Change Password</h5>
-                <p class="text-muted">Leave these fields blank if you do not want to change your password.</p>
+            <h5 class="text-warning">Change Password</h5>
+            <p class="text-muted">Leave these fields blank if you do not want to change your password.</p>
 
-                <div class="mb-3">
-                    <label for="current_password" class="form-label">Current Password</label>
-                    <input type="password"
-                        class="form-control bg-secondary text-white border-dark @error('current_password') is-invalid @enderror"
-                        id="current_password" name="current_password">
-                    @error('current_password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">New Password</label>
-                    <input type="password"
-                        class="form-control bg-secondary text-white border-dark @error('password') is-invalid @enderror"
-                        id="password" name="password">
-                    @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="password_confirmation" class="form-label">Confirm New Password</label>
-                    <input type="password" class="form-control bg-secondary text-white border-dark"
-                        id="password_confirmation" name="password_confirmation">
-                </div>
+            <div class="mb-3">
+                <label for="current_password" class="form-label">Current Password</label>
+                <input type="password"
+                    class="form-control bg-secondary text-white border-dark @error('current_password') is-invalid @enderror"
+                    id="current_password" name="current_password">
+                @error('current_password')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">New Password</label>
+                <input type="password"
+                    class="form-control bg-secondary text-white border-dark @error('password') is-invalid @enderror"
+                    id="password" name="password">
+                @error('password')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control bg-secondary text-white border-dark"
+                    id="password_confirmation" name="password_confirmation">
+            </div>
 
-                <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Save Changes</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Save Changes</button>
+        </form>
     </div>
+</div>
 @endsection

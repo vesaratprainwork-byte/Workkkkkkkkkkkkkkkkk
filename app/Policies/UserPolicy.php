@@ -7,7 +7,7 @@ use Illuminate\Auth\Access\Response;
 
 class UserPolicy
 {
-    
+
     public function before(User $user, string $ability): bool|null
     {
         if ($user->role === 'ADMIN') {
@@ -16,7 +16,7 @@ class UserPolicy
         return null;
     }
 
-    
+
     public function viewAny(User $user): bool
     {
         return false;
@@ -39,13 +39,11 @@ class UserPolicy
         return false;
     }
 
-    
-    
+
+
     public function delete(User $user, User $model): bool
     {
-       
+
         return $user->role === 'ADMIN' && $user->id !== $model->id;
     }
-
-    
 }

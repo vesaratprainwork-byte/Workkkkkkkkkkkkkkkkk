@@ -22,8 +22,8 @@ class ReviewController extends Controller
         ]);
 
         $existingReview = Review::where('user_id', Auth::id())
-                                ->where('movie_id', $movie->id)
-                                ->first();
+            ->where('movie_id', $movie->id)
+            ->first();
 
         if ($existingReview) {
             return back()->withErrors(['alert' => 'You have already reviewed this movie.']);
@@ -39,14 +39,14 @@ class ReviewController extends Controller
         return back()->with('status', 'Your review has been submitted successfully!');
     }
 
-    
+
     public function showEditForm(Review $review)
     {
         $this->authorize('update', $review);
         return view('reviews.edit-form', ['review' => $review]);
     }
 
-    
+
     public function update(Request $request, Review $review)
     {
         $this->authorize('update', $review);

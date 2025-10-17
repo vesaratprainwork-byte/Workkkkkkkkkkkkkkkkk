@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
 </head>
+
 <body class="bg-dark text-light">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-black mb-4">
@@ -22,26 +24,30 @@
                 </ul>
                 <div class="d-flex align-items-center">
                     @guest
-                        <a href="{{ route('logins.form') }}" class="btn btn-outline-warning me-2">Login</a>
-                        <a href="{{ route('register.form') }}" class="btn btn-warning">Register</a>
+                    <a href="{{ route('logins.form') }}" class="btn btn-outline-warning me-2">Login</a>
+                    <a href="{{ route('register.form') }}" class="btn btn-warning">Register</a>
                     @endguest
                     @auth
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Welcome, {{ Auth::user()->name }}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">My Profile</a></li>
-                                @if (Auth::user()->role === 'ADMIN')
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{{ route('admin.users.list') }}">Manage Users</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('genres.list') }}">Manage Genres</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('providers.list') }}">Manage Providers</a></li>
-                                @endif
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('logins.logout') }}">Logout</a></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome, {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">My Profile</a></li>
+                            @if (Auth::user()->role === 'ADMIN')
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('admin.users.list') }}">Manage Users</a></li>
+                            <li><a class="dropdown-item" href="{{ route('genres.list') }}">Manage Genres</a></li>
+                            <li><a class="dropdown-item" href="{{ route('providers.list') }}">Manage Providers</a></li>
+                            @endif
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('logins.logout') }}">Logout</a></li>
+                        </ul>
+                    </div>
                     @endauth
                 </div>
             </div>
@@ -50,16 +56,16 @@
 
     <main class="container">
         @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
+        <div class="alert alert-success">{{ session('status') }}</div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
         @endif
         @yield('content')
     </main>
@@ -72,4 +78,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('script')
 </body>
+
 </html>

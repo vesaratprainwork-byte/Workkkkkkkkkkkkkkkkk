@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\Response;
 
 class ProviderPolicy
 {
-    
+
     public function before(User $user, string $ability): bool|null
     {
         if ($user->role === 'ADMIN') {
@@ -19,7 +19,7 @@ class ProviderPolicy
 
     public function viewAny(User $user): bool
     {
-        return false; 
+        return false;
     }
 
     public function view(User $user, Provider $provider): bool
