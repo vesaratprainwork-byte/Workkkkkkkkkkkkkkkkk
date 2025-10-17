@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class ProviderSeeder extends Seeder
 {
-    
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
         DB::table('providers')->insert([
-            ['name' => 'Netflix', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Disney+', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'HBO GO', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Amazon Prime Video', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Netflix', 'url' => 'https://www.netflix.com', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Disney+', 'url' => 'https://www.disneyplus.com', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'HBO GO', 'url' => 'https://www.hbogo.co.th', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Amazon Prime Video', 'url' => 'https://www.primevideo.com', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }

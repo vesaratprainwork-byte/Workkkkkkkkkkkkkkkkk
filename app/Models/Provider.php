@@ -10,9 +10,8 @@ class Provider extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'logo_url'];
+    protected $fillable = ['name', 'logo_url', 'url']; 
 
-    
     public function movies(): BelongsToMany
     {
         return $this->belongsToMany(Movie::class, 'movie_provider');
